@@ -80,6 +80,7 @@ exports.handler = async event => {
       const response =
       {
         statusCode: 500,
+        headers: {'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'},
         body: "Internal server error"
       };
       return response;
@@ -90,6 +91,7 @@ exports.handler = async event => {
     const response =
     {
       statusCode: 200,
+	  headers: {'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'},
       body: JSON.stringify({ input: data, output: message })
     };
     return response;
@@ -99,6 +101,7 @@ exports.handler = async event => {
     const response =
     {
       statusCode: 403,
+	  headers: {'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'},
       body: "Unauthorized Sender"
     };
     console.log(response.body);
