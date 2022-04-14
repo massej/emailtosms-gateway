@@ -79,9 +79,10 @@ exports.handler = async event => {
       console.log(err);
       const response =
       {
+        isBase64Encoded: false,
         statusCode: 500,
-        headers: {'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'},
-        body: "Internal server error"
+        headers: {'Content-Type': 'application/json', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'},
+        body: JSON.stringify({ message: 'Internal server error' })
       };
       return response;
     }
@@ -90,8 +91,9 @@ exports.handler = async event => {
     console.log("Message Output: ", message);
     const response =
     {
+      isBase64Encoded: false,
       statusCode: 200,
-	  headers: {'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'},
+      headers: {'Content-Type': 'application/json', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'},
       body: JSON.stringify({ input: data, output: message })
     };
     return response;
@@ -100,9 +102,10 @@ exports.handler = async event => {
   else {
     const response =
     {
+      isBase64Encoded: false,
       statusCode: 403,
-	  headers: {'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'},
-      body: "Unauthorized Sender"
+      headers: {'Content-Type': 'application/json', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'},
+      body: JSON.stringify({ message: 'Unauthorized Sender' })
     };
     console.log(response.body);
     return response;
