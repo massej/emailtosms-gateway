@@ -31,6 +31,9 @@ const extractEmails = from => {
  * @returns {Boolean}
  */
 const validateSender = from => {
+  if (typeof process.env.AllowedDomains === 'undefined')
+    return true;
+
   let emails = extractEmails(from);
   let isValid = false;
   let domains = process.env.AllowedDomains.toLowerCase().split(",");
